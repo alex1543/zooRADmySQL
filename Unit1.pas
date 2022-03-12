@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, mySQLDbTables, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus, Unit2;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus, Unit2, Unit3;
 
 type
   TForm1 = class(TForm)
@@ -143,7 +143,17 @@ end;
 
 procedure TForm1.StringGrid1DblClick(Sender: TObject);
 begin
- // ShowMessage(StringGrid1.);
+ // ShowMessage(StringGrid1.Selection.Bottom.ToString);
+ // ShowMessage(StringGrid1.Cells[1,StringGrid1.Selection.Bottom] );
+
+  Form3.Edit1.Text := StringGrid1.Cells[1,StringGrid1.Selection.Bottom];
+  Form3.Edit2.Text := StringGrid1.Cells[2,StringGrid1.Selection.Bottom];
+  Form3.Edit3.Text := StringGrid1.Cells[3,StringGrid1.Selection.Bottom];
+
+  Form3.Edit4.Text := StringGrid1.Selection.Bottom.ToString;
+  Form3.Edit5.Text := StringGrid1.Cells[0,StringGrid1.Selection.Bottom];
+
+  Form3.Show;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
