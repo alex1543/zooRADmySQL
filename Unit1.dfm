@@ -331,7 +331,7 @@ object Form1: TForm1
     Width = 265
     Height = 21
     TabOrder = 1
-    Text = 'SELECT * FROM myarttable ORDER by id ASC;'
+    Text = 'SELECT * FROM products ORDER by id ASC;'
   end
   object Button2: TButton
     Left = 384
