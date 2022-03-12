@@ -29,10 +29,12 @@ type
     CheckBox1: TCheckBox;
     Button3: TButton;
     Button2: TButton;
+    Button4: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,6 +66,42 @@ end;
 procedure TForm3.Button3Click(Sender: TObject);
 begin
   Memo1.Text :=  'UPDATE products SET text = '''+Edit1.Text+''', description = '''+Edit2.Text+''', keywords = '''+Edit3.Text+''' WHERE id = '''+Edit5.Text+''';';
+end;
+
+procedure TForm3.Button4Click(Sender: TObject);
+var
+  AMsgDialog: TForm;
+  AEdit: TEdit;
+begin
+
+  AMsgDialog := CreateMessageDialog('Вы действительно хотите удалить эту запись?',mtConfirmation, [mbYes, mbNo]);
+  AEdit := TEdit.Create(AMsgDialog);
+  with AMsgDialog do
+    try
+      Caption := 'Удаление записи с id='+Edit5.Text;
+
+      with AEdit do
+      begin
+        Parent := AMsgDialog;
+        Text := Edit5.Text;
+        Top := 67;
+        Left := 40;
+        Width := 40;
+      end;
+
+      if ShowModal=ID_YES then
+      begin
+        MySQLQuery1.SQL.Clear;
+        Memo1.Text :=  'DELETE FROM products WHERE id = '''+AEdit.Text+''';';
+        MySQLQuery1.SQL.Add(Memo1.Text);
+        MySQLQuery1.ExecSQL;
+        Form3.Close;
+      end;
+
+    finally
+      Free;
+    end;
+
 end;
 
 procedure TForm3.CheckBox1Click(Sender: TObject);

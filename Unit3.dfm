@@ -893,13 +893,22 @@ object Form3: TForm3
       Text = 'Edit3'
     end
     object Button1: TButton
-      Left = 115
+      Left = 120
       Top = 101
-      Width = 75
+      Width = 70
       Height = 25
       Caption = #1048#1079#1084#1077#1085#1080#1090#1100
       TabOrder = 3
       OnClick = Button1Click
+    end
+    object Button4: TButton
+      Left = 6
+      Top = 112
+      Width = 65
+      Height = 25
+      Caption = #1059#1076#1072#1083#1080#1090#1100
+      TabOrder = 4
+      OnClick = Button4Click
     end
   end
   object GroupBox2: TGroupBox
@@ -993,7 +1002,7 @@ object Form3: TForm3
   end
   object MySQLQuery1: TMySQLQuery
     Database = Form1.MySQLDatabase1
-    Left = 231
-    Top = 104
+    Left = 239
+    Top = 48
   end
 end
