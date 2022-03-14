@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   System.UITypes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, mySQLDbTables, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus, Unit2, Unit3;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus, Unit2, Unit3, Unit4;
 
 type
   TForm1 = class(TForm)
@@ -79,7 +79,8 @@ type
   public
     { Public declarations }
   end;
-
+const
+  Fn = 'servers.cfg';
 var
   Form1: TForm1;
       nRow:Integer;
@@ -123,8 +124,6 @@ begin
 end;
 
 procedure TForm1.FormActivate(Sender: TObject);
-const
-  Fn = 'servers.cfg';
 var
   FileName : String;
   iServ : Integer;
@@ -289,7 +288,9 @@ end;
 
 procedure TForm1.Button9Click(Sender: TObject);
 begin
-  Memo1.Text := Slservs.Text;
+  Form4.Memo1.Text := Slservs.Text;
+  Form4.Edit1.Text := ExtractFilePath( ParamStr(0) ) + Fn;
+  Form4.Show;
 end;
 
 procedure TForm1.ComboBox1Change(Sender: TObject);

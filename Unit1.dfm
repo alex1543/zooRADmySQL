@@ -155,22 +155,22 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 464
-    Top = 214
+    Left = 472
+    Top = 182
     Width = 16
     Height = 13
     Caption = 'id='
   end
   object Label2: TLabel
-    Left = 527
-    Top = 213
+    Left = 535
+    Top = 181
     Width = 28
     Height = 13
     Caption = 'table:'
   end
   object Image1: TImage
-    Left = 267
-    Top = 276
+    Left = 272
+    Top = 280
     Width = 82
     Height = 82
     Picture.Data = {
@@ -319,7 +319,7 @@ object Form1: TForm1
     Caption = #1050#1072#1088#1090#1086#1095#1082#1072' '#1091#1095#1105#1090#1072
   end
   object Button1: TButton
-    Left = 279
+    Left = 624
     Top = 364
     Width = 50
     Height = 25
@@ -328,16 +328,16 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Edit1: TEdit
-    Left = 8
-    Top = 368
-    Width = 265
+    Left = 376
+    Top = 366
+    Width = 242
     Height = 21
     TabOrder = 1
     Text = 'SELECT * FROM products ORDER by id ASC;'
   end
   object Button2: TButton
-    Left = 384
-    Top = 208
+    Left = 392
+    Top = 176
     Width = 75
     Height = 25
     Caption = 'DELETE'
@@ -345,8 +345,8 @@ object Form1: TForm1
     OnClick = Button2Click
   end
   object Edit2: TEdit
-    Left = 480
-    Top = 210
+    Left = 488
+    Top = 178
     Width = 35
     Height = 21
     TabOrder = 3
@@ -362,16 +362,16 @@ object Form1: TForm1
     OnDblClick = StringGrid1DblClick
   end
   object Edit3: TEdit
-    Left = 561
-    Top = 210
+    Left = 569
+    Top = 178
     Width = 72
     Height = 21
     TabOrder = 5
     Text = 'products'
   end
   object Button3: TButton
-    Left = 140
-    Top = 321
+    Left = 197
+    Top = 274
     Width = 121
     Height = 25
     Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1087#1088#1080#1093#1086#1076
@@ -379,32 +379,32 @@ object Form1: TForm1
     OnClick = Button3Click
   end
   object Edit4: TEdit
-    Left = 8
-    Top = 294
+    Left = 11
+    Top = 276
     Width = 56
     Height = 21
     TabOrder = 7
     Text = 'Name1'
   end
   object Edit5: TEdit
-    Left = 70
-    Top = 294
+    Left = 73
+    Top = 276
     Width = 56
     Height = 21
     TabOrder = 8
     Text = 'Desc.'
   end
   object Edit6: TEdit
-    Left = 132
-    Top = 294
+    Left = 135
+    Top = 276
     Width = 56
     Height = 21
     TabOrder = 9
     Text = 'key1, 2 ...'
   end
   object Button4: TButton
-    Left = 250
-    Top = 276
+    Left = 284
+    Top = 364
     Width = 59
     Height = 25
     Caption = 'Refresh'
@@ -412,8 +412,8 @@ object Form1: TForm1
     OnClick = Button4Click
   end
   object GroupBox1: TGroupBox
-    Left = 360
-    Top = 246
+    Left = 368
+    Top = 214
     Width = 313
     Height = 143
     Caption = 'Debug'
@@ -466,8 +466,8 @@ object Form1: TForm1
     end
   end
   object RadioButton1: TRadioButton
-    Left = 444
-    Top = 185
+    Left = 452
+    Top = 153
     Width = 36
     Height = 17
     Caption = 'id='
@@ -477,8 +477,8 @@ object Form1: TForm1
     OnClick = RadioButton1Click
   end
   object RadioButton2: TRadioButton
-    Left = 486
-    Top = 185
+    Left = 494
+    Top = 153
     Width = 34
     Height = 17
     Caption = 'id<'
@@ -486,8 +486,8 @@ object Form1: TForm1
     OnClick = RadioButton2Click
   end
   object RadioButton3: TRadioButton
-    Left = 526
-    Top = 185
+    Left = 534
+    Top = 153
     Width = 33
     Height = 17
     Caption = 'id>'
@@ -498,7 +498,7 @@ object Form1: TForm1
     Left = 376
     Top = 73
     Width = 297
-    Height = 106
+    Height = 72
     Lines.Strings = (
       #1054#1090#1083#1072#1076#1082#1072'...')
     TabOrder = 15
