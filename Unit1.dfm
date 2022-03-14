@@ -150,6 +150,8 @@ object Form1: TForm1
   Menu = MainMenu1
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnActivate = FormActivate
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -303,8 +305,8 @@ object Form1: TForm1
       03A992692055B27F0266E40CAE3022E5410000000049454E44AE426082}
   end
   object Label3: TLabel
-    Left = 360
-    Top = 40
+    Left = 393
+    Top = 42
     Width = 65
     Height = 13
     Caption = #1042#1099' '#1074#1099#1073#1088#1072#1083#1080':'
@@ -503,23 +505,34 @@ object Form1: TForm1
   end
   object ComboBox1: TComboBox
     Left = 376
-    Top = 10
-    Width = 225
+    Top = 11
+    Width = 242
     Height = 21
+    Style = csDropDownList
+    ItemIndex = 0
     TabOrder = 16
-    Text = #1042#1099#1073#1077#1088#1080#1090#1077'...'
+    Text = 'MySQL Server from XAMPP (MariaDB)'
     OnChange = ComboBox1Change
     Items.Strings = (
       'MySQL Server from XAMPP (MariaDB)'
       'MySQL Server from Oracle')
   end
   object Edit7: TEdit
-    Left = 431
-    Top = 37
+    Left = 464
+    Top = 39
     Width = 192
     Height = 21
     Enabled = False
     TabOrder = 17
+  end
+  object Button9: TButton
+    Left = 624
+    Top = 8
+    Width = 49
+    Height = 25
+    Caption = 'Edit'
+    TabOrder = 18
+    OnClick = Button9Click
   end
   object MySQLQuery1: TMySQLQuery
     Database = MySQLDatabase1

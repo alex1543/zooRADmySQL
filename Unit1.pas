@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, mySQLDbTables, Vcl.Grids,
+  System.UITypes, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, mySQLDbTables, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Menus, Unit2, Unit3;
 
 type
@@ -51,6 +51,7 @@ type
     N1: TMenuItem;
     N2: TMenuItem;
     N3: TMenuItem;
+    Button9: TButton;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -64,12 +65,15 @@ type
     procedure RadioButton2Click(Sender: TObject);
     procedure RadioButton3Click(Sender: TObject);
     procedure RadioButton1Click(Sender: TObject);
-    procedure ComboBox1Change(Sender: TObject);
     procedure N2Click(Sender: TObject);
     procedure DataBase1Click(Sender: TObject);
     procedure StringGrid1DblClick(Sender: TObject);
     procedure N3Click(Sender: TObject);
     procedure Exit1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure Button9Click(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,6 +85,8 @@ var
       nRow:Integer;
       nCol:Integer;
       blDrop:Boolean;
+      Slservs : TStringList;
+      boolFirst : Boolean;
 
 implementation
 
@@ -116,9 +122,50 @@ begin
   FillGrid := true;
 end;
 
+procedure TForm1.FormActivate(Sender: TObject);
+const
+  Fn = 'servers.cfg';
+var
+  FileName : String;
+  iServ : Integer;
+begin
+//  конфиги читаются всего 1 раз
+// за всю работу программы.
+if boolFirst then
+begin
+  FileName := ExtractFilePath( ParamStr(0) ) + Fn;
+  if not FileExists(FileName) then begin
+    MessageDlg('Файл не найден. Действие отменено.', mtWarning, [mbOk], 0);
+    Exit;
+  end;
+
+  Slservs := TStringList.Create;
+  Slservs.LoadFromFile(FileName);
+ // FreeAndNil(Sl);
+
+   // заполнение выпадающего списка из файла
+  ComboBox1.Clear;
+  iServ := 1;
+  repeat
+    ComboBox1.Items.Add(Slservs[iServ]);
+    iServ := iServ+6;
+  until iServ > Slservs.Count;
+  ComboBox1.ItemIndex := 0;
+  ComboBox1.OnChange(Sender);
+
+  boolFirst := false; //  больше никогда не читаем конфиги.
+end;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  boolFirst := true; // всего 1 раз читать конфиги.
+end;
+
 procedure TForm1.N2Click(Sender: TObject);
 begin
-  ShowMessage('Программа учёта товаров на складе, Вер. 1.0');
+ // ShowMessage('Программа учёта товаров на складе, Вер. 1.0');
+  MessageDlg('Программа учёта товаров на складе, Вер. 1.0', mtInformation, [mbOk], 0);
 end;
 
 procedure TForm1.N3Click(Sender: TObject);
@@ -240,6 +287,11 @@ begin
   Memo1.Text := 'UPDATE products SET keywords = "Ivanov" WHERE id = 18;';
 end;
 
+procedure TForm1.Button9Click(Sender: TObject);
+begin
+  Memo1.Text := Slservs.Text;
+end;
+
 procedure TForm1.ComboBox1Change(Sender: TObject);
 begin
   Edit7.Text := ComboBox1.Items[ComboBox1.ItemIndex];
@@ -247,22 +299,16 @@ begin
    //  ShowMessage(ComboBox1.ItemIndex.ToString);
   mySQLDatabase1.Connected := false;
 
-  if ComboBox1.ItemIndex = 0 then
-  begin
-    MySQLDataBase1.Port := 3306;
-    MySQLDataBase1.UserName := 'root';
-    MySQLDataBase1.UserPassword := '';
-  end;
-  if ComboBox1.ItemIndex = 1 then
-  begin
-    MySQLDataBase1.Port := 3307;
-    MySQLDataBase1.UserName := 'root';
-    MySQLDataBase1.UserPassword := 'Qq1234567890-=';
-  end;
+  MySQLDataBase1.Host := Slservs[2+(ComboBox1.ItemIndex*6)];
+ // ShowMessage(MySQLDataBase1.Host);
+  MySQLDataBase1.Port := Slservs[3+(ComboBox1.ItemIndex*6)].ToInteger;
+  MySQLDataBase1.UserName := Slservs[4+(ComboBox1.ItemIndex*6)];
+  MySQLDataBase1.UserPassword := Slservs[5+(ComboBox1.ItemIndex*6)];
 
   mySQLDatabase1.DatabaseName := 'zoo';
   mySQLDatabase1.Connected := true;
 
+  Button4.Click;
 end;
 
 procedure TForm1.DataBase1Click(Sender: TObject);
