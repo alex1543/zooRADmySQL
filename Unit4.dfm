@@ -29,6 +29,12 @@ object Form4: TForm4
     Width = 320
     Height = 120
     TabOrder = 0
+    ColWidths = (
+      64
+      64
+      40
+      126
+      64)
     RowHeights = (
       24
       24
@@ -89,6 +95,15 @@ object Form4: TForm4
     Caption = #1054#1073#1079#1086#1088'...'
     TabOrder = 6
     OnClick = Button4Click
+  end
+  object Button5: TButton
+    Left = 248
+    Top = 134
+    Width = 65
+    Height = 25
+    Caption = 'Refresh'
+    TabOrder = 7
+    OnClick = Button5Click
   end
   object OpenTextFileDialog1: TOpenTextFileDialog
     Left = 576

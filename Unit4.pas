@@ -18,10 +18,12 @@ type
     Button3: TButton;
     OpenTextFileDialog1: TOpenTextFileDialog;
     Button4: TButton;
+    Button5: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,7 +39,11 @@ implementation
 
 procedure TForm4.Button1Click(Sender: TObject);
 begin
+ if not FileExists('C:\Program Files\Notepad++\notepad++.exe') then begin
   ShellExecute(Handle, 'open', 'notepad.exe', PChar(Edit1.Text), nil, SW_SHOWNORMAL);
+ end else begin
+  ShellExecute(Handle, 'open', 'C:\Program Files\Notepad++\notepad++.exe', PChar(Edit1.Text), nil, SW_SHOWNORMAL);
+ end;
 end;
 
 procedure TForm4.Button2Click(Sender: TObject);
@@ -79,6 +85,30 @@ begin
         Memo1.Lines.LoadFromFile(OpenTextFileDialog1.FileName);
         Edit1.Text := OpenTextFileDialog1.FileName;
     end;
+end;
+
+procedure TForm4.Button5Click(Sender: TObject);
+var
+  nRow, nRowsg:Integer;
+begin
+  StringGrid1.Cells[0,0]:='#';
+  StringGrid1.Cells[1,0]:='host';
+  StringGrid1.Cells[2,0]:='port';
+  StringGrid1.Cells[3,0]:='desc.';
+
+  nRow:=0; nRowsg := 0;
+  repeat
+    StringGrid1.RowCount:=nRowsg+1;
+    StringGrid1.ColCount:=4;
+
+    StringGrid1.Cells[0,nRowsg+1]:=(nRowsg+1).ToString;
+    StringGrid1.Cells[1,nRowsg+1]:=Memo1.Lines[nRow+2];
+    StringGrid1.Cells[2,nRowsg+1]:=Memo1.Lines[nRow+3];
+    StringGrid1.Cells[3,nRowsg+1]:=Memo1.Lines[nRow+1];
+
+    nRow:=nRow+6;
+    nRowsg := nRowsg+1;
+  until nRow > Memo1.Lines.Count;
 end;
 
 end.
